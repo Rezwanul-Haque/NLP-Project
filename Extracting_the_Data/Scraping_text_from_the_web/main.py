@@ -90,7 +90,7 @@ for row, i in zip(summary.find('table').findAll('tr'), range(len(summary.find('t
                 status_code = "Connection refused"
             
             rc = rresult.content
-            rsoup = BeautifulSoup(rc)
+            rsoup = BeautifulSoup(rc, features="lxml")
 
             try:
                 rot_audscore.append(rsoup.find('div', {'class': 'meter-value'}).find('span', {'class': 'superPageFontColor'}).text)
