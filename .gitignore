@@ -130,3 +130,4 @@ static_root
 venv
 /media
 .env
+*.csv
