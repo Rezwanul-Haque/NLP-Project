@@ -10,7 +10,7 @@
     
     Author: Rezwanul Haque
     Date: 
-    License: 
+    License: MIT
 """
 # Import Standard Library
 
