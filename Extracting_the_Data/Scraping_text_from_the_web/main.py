@@ -93,9 +93,15 @@ for row, i in zip(summary.find('table').findAll('tr'), range(len(summary.find('t
             rsoup = BeautifulSoup(rc, features="lxml")
 
             try:
-                rot_audscore.append(rsoup.find('div', {'class': 'meter-value'}).find('span', {'class': 'superPageFontColor'}).text)
-                rot_avgrating.append(rsoup.find('div', {'class': 'audience-info hidden-xs superPageFontColor'}).find('div').contents[2].strip())
-                rot_users.append(rsoup.find('div', {'class': 'audience-info hidden-xs superPageFontColor'}).contents[3].contents[2].strip())
+                rot_audscore.append(rsoup.find('div', {'class': 'meter-value'})
+                                         .find('span', {'class': 'superPageFontColor'})
+                                         .text)
+                rot_avgrating.append(rsoup.find('div', {'class': 'audience-info hidden-xs superPageFontColor'})
+                                          .find('div').contents[2].strip())
+                rot_users.append(rsoup.find('div', {'class': 'audience-info hidden-xs superPageFontColor'})
+                                      .contents[3]
+                                      .contents[2]
+                                      .strip())
             except AttributeError:
                 rot_audscore.append("")
                 rot_avgrating.append("")
@@ -133,9 +139,13 @@ rot_avgrating = Series(rot_avgrating)
 rot_users = Series(rot_users)
 
 # Creating dataframe and doing analysis
-imdb_df = pd.concat([moviename, year, description, genre, cast, rating, ratingoutof, rot_audscore, rot_avgrating, rot_users], axis=1)
+imdb_df = pd.concat([moviename, year, description, genre, cast, rating, 
+                     ratingoutof, rot_audscore, rot_avgrating, rot_users],
+                    axis=1)
 
-imdb_df.columns = ['moviename','year','description','genre','cast','imdb_rating','imdb_ratingbasedon','tomatoes_audscore','tomatoes_rating','tomatoes_ratingbasedon']
+imdb_df.columns = ['moviename', 'year', 'description', 'genre', 'cast', 
+                   'imdb_rating', 'imdb_ratingbasedon', 'tomatoes_audscore',
+                   'tomatoes_rating', 'tomatoes_ratingbasedon']
 
 imdb_df['rank'] = imdb_df.index + 1
 imdb_df.head(1)
