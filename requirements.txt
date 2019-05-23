@@ -2,3 +2,5 @@ tweepy==3.7.0
 pypdf2==1.26.0
 python-docx==0.8.10
 beautifulsoup4==4.7.1
+textblob==0.15.3
+autocorrect==0.3.0
